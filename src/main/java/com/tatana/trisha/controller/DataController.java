@@ -1,30 +1,23 @@
 package com.tatana.trisha.controller;
 
-import com.tatana.trisha.dto.User;
-import com.tatana.trisha.service.DataService;
+import com.tatana.trisha.provider.UserProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 
 
 @RestController
 public class DataController {
 
+    private UserProvider userProvider;
 
-    private DataService dataService;
-
-    public DataController(DataService dataService) {
-        this.dataService = dataService;
+    @Autowired
+    public DataController(UserProvider userProvider) {
+        this.userProvider = userProvider;
     }
 
-    @GetMapping("/ids")
-    public Iterable<Integer> idsList() {
-        return dataService.getUserIdList1();
-    }
-
-    @GetMapping("/users")
-    public Iterable<User> usersList() {
-        return dataService.getUserInfo( dataService.getUserIdList());
-    }
+//    @GetMapping("/ids")
+//    public Iterable<Integer> idsList() {
+//        return userProvider.getUserIdsFromGroup();
+//    }
 }
